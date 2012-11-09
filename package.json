@@ -1,0 +1,19 @@
+{
+  "name": "nko3-codice-nocturnus",
+  "version": "0.0.0",
+  "description": "Codice Nocturnus",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nko3/codice-nocturnus.git"
+  },
+  "dependencies": {
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "subdomain": "codice-nocturnus.nko3"
+}
