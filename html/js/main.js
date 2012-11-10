@@ -48,10 +48,9 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 function viewReportsCtrl ($scope, $element, $rootScope) {
 	var map;
 	var geocoder;
+	var markers = [];
 	
-	var lowZoomData = [
 	
-	];
 	
 	var highZoomData = [
 		{location: new google.maps.LatLng(40.7143528, -74.0059731), weight: 1},
@@ -61,8 +60,22 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		{location: new google.maps.LatLng(40.7143528, -74.1059731), weight: .4}
 	];
 	
+	var heatmap = new google.maps.visualization.HeatmapLayer({
+	  data: highZoomData,
+	  dissipating: true
+	});
+	
 	var lowZoomData = [
-		
+		new google.maps.LatLng(40.7143528, -74.0059731),
+		new google.maps.LatLng(40.7243528, -74.0159731),
+		new google.maps.LatLng(40.7133528, -74.0259731),
+		new google.maps.LatLng(40.7123528, -74.0029731),
+		new google.maps.LatLng(40.7213528, -74.0049731),
+		new google.maps.LatLng(40.7233528, -74.0029731),
+		new google.maps.LatLng(40.7093528, -74.0129731),
+		new google.maps.LatLng(40.7083528, -74.0109731),
+		new google.maps.LatLng(40.7073528, -74.0189731),
+		new google.maps.LatLng(40.7223528, -74.0199731)
 	
 	];
 	
@@ -78,15 +91,73 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		console.log($mapElement);
 		map = new google.maps.Map(document.getElementById("map-display"), mapOptions);
 		
+		placeHeatmap();
+		//placeMarkers();
 		
-		var heatmap = new google.maps.visualization.HeatmapLayer({
-		  data: highZoomData,
-		  dissipating: true
-		});
-		
-		heatmap.setMap(map);
+		google.maps.event.addListener(map, 'zoom_changed', zoomHandler);
 		
 	});
+	
+	function zoomHandler() {
+		if (typeof this.heatmap == 'undefined')
+			this.heatmap = true;
+		var z = map.getZoom();
+		console.log(z);
+		if (this.heatmap && z >=10) {
+			//if past zoom 10 and heatmap is still there
+			//remove the heatmap, place markers
+			placeMarkers();
+			removeHeatmap();
+			this.heatmap = false;
+		} else if (this.heatmap && z < 10) {
+			//if zoom is low and heatmap is already there
+			//do nothing
+			return;
+		} else if (!this.heatmap && z < 10) {
+			//if zoom is low and heatmap is not there
+			//place the heatmap, remove the markers
+			placeHeatmap();
+			removeMarkers();
+			this.heatmap = true;
+		}
+	}
+	
+	
+	function placeMarkers() {
+		var d = lowZoomData;
+		var i = d.length;
+		var c;
+		var mr = markers;
+		var mp = map;
+		for (;i--;) {
+			c = d[i];
+			//console.log(c);
+			mr.push(
+				new google.maps.Marker({
+					position: c,
+					map: mp,
+					title:"Hello World!"
+				})
+			);
+		}
+	}
+	
+	function removeMarkers() {
+		var mr = markers;
+		var i = mr.length;
+		for (;i--;) {
+			mr[i].setMap(null);
+		}
+	}
+	
+	
+	function placeHeatmap() {
+		heatmap.setMap(map);
+	}
+	
+	function removeHeatmap() {
+		heatmap.setMap(null);
+	}
 	
 	if (navigator.geolocation) {
 		console.log('getting location');
