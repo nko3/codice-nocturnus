@@ -1,6 +1,6 @@
 {
   "name": "nko3-codice-nocturnus",
-  "version": "0.0.0",
+  "version": "0.0.0-2",
   "description": "Codice Nocturnus",
   "main": "server.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "url": "git@github.com:nko3/codice-nocturnus.git"
   },
   "dependencies": {
+	"socket.io" : "0.9.11"
   },
   "engines": {
     "node": "0.8.x"

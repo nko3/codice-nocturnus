@@ -296,3 +296,194 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+
+
+	/* ==========================================================================
+	End of Boilerplate
+	========================================================================== */
+
+	h1, h2, h3 {
+		text-align: center;
+	}
+
+
+	.view {
+		border: 1px solid #000;
+	}
+
+
+
+	#frontpage {
+
+	}
+
+	#frontpage #navigate {
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px;
+	}
+	#frontpage #navigate h1 {
+		text-align:center;
+	}
+
+	#frontpage #navigate button{
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	#frontpage #navigate button#make{
+		float:left;
+	}
+
+	#frontpage #navigate button#view{
+		float:right;
+	}
+
+
+
+
+
+
+	#make-report {
+
+	}
+
+	#make-report #breadcrumbs{
+
+	}
+
+	#make-report #steps{
+
+	}
+	
+	#make-report #step2 .form-line {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	#make-report #step2 .form-line:last-child{
+		border-bottom: 0;
+	}
+	
+	#make-report #step2 textarea, #make-report #step2 input, #make-report #step2 select {
+		width: 100%;
+		
+	}
+
+	#make-report #step2, #make-report #step3{
+		width: 300px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#make-report {
+
+	}
+
+
+
+
+
+
+
+
+
+
+	#view-reports {
+
+	}
+
+	#view-reports #timeline{
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		
+	}
+	
+	#view-reports #timeline div{
+		width:150px;
+	}
+	
+	#view-reports #timeline input{
+		width: 100%;
+	}
+	
+	#view-reports #timeline #start-date{
+		float: left;
+	}
+	
+	#view-reports #timeline #end-date{
+		float: right;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	#view-reports #report-display{
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	#view-reports #report-display .report-line{
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	#view-reports #report-display .report-line:last-child{
+		border-bottom: 0;
+	}
+	
+	#view-reports #report-display h4{
+		margin: 0;
+	}
+	
+	#view-reports #report-display p{
+		margin-left: 15px;
+		margin-top: 8px;
+		margin-bottom: 0;
+	}
+	
+	
+	
+	#view-reports #report-display{
+		
+	}
+	
+	#view-reports {
+
+	}
+	
+	
+	#view-reports {
+
+	}
+	
+	
+	#view-reports {
+
+	}
+	
+	
+
+
+
+
+
+
+
