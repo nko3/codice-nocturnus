@@ -17,14 +17,14 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
     </head>
-    <body>
+    <body data-ng-controller="mainCtrl">
 
 		
-		<div class="view" id="frontpage">
+		<div data-ng-controller="frontpageCtrl" class="view" id="frontpage">
 			<section id="navigate">
 				<h1>Disaster Reporting</h1>
-				<button id="make">Make a Report</button>
-				<button id="view">View Reports</button>
+				<button data-ng-click="make()" id="make">Make a Report</button>
+				<button data-ng-click="view()" id="view">View Reports</button>
 				<div class="clearfix"></div>
 			</section>
 		
@@ -32,7 +32,7 @@
 		
 		
 		
-		<div class="view" id="make-report">
+		<div data-ng-controller="makeReportCtrl" class="view" id="make-report">
 			<section id="breadcrumbs">
 			
 			</section>
@@ -87,7 +87,7 @@
 		
 		
 		
-		<div class="view" id="view-reports">
+		<div data-ng-controller="viewReportsCtrl" class="view" id="view-reports">
 			<section id="timeline">
 				<div id="start-date">
 					<label>Start Date</label>
