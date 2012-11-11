@@ -44,7 +44,17 @@ db.test.find({}, function(err, data) {
 Socket.IO Setup
 *************/
 
-var io = require('socket.io').listen(8000);
+var io = require('socket.io').listen(8000, {'log level': 0});
 console.log('Socket.io listening on port 8000');
-console.log(io);
+
+io.sockets.on('connection', function (socket) {
+	
+	socket.on('create-report', function(data) {
+		console.log(data);
+	});
+	
+	
+	
+
+}
 
