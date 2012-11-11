@@ -40,7 +40,7 @@
 					<li><a data-ng-click="">Upload Media</a></li>
 					
 				</ul>
-				<button>Next</button>
+				<button data-ng-click="next()">Next</button>
 				<div class="clearfix"></div>
 			</nav>
 			<div id="steps">
@@ -52,7 +52,7 @@
 					<form id="damage-report">
 						<div class="form-line">
 							<label>Select event (if applicable)</label>
-							<select>
+							<select ng-model="reportData.event">
 								<option></option>
 								<option>Hurricane Sandy</option>
 								<option>Hurricane Irene</option>
@@ -61,7 +61,7 @@
 					
 						<div class="form-line">
 							<label>Select damage type</label>
-							<select>
+							<select ng-model="reportData.type">
 								<optgroup label="Storm">
 									<option>Wind</option>
 									<option>Flood</option>
@@ -72,13 +72,13 @@
 							</select>
 						</div>
 						
-						<div class="form-line">
+						<div class="form-line" >
 							<label>Date Observed</label>
-							<input type="date" />
+							<input ng-model="reportData.date" type="date" />
 						</div>
 						
 						<div class="form-line">
-							<textarea placeholder="Any further details"></textarea>
+							<textarea ng-model="reportData.details" placeholder="Any further details"></textarea>
 						</div>
 					</form>
 				</section>

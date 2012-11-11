@@ -97,12 +97,45 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 	
 	
 	$scope.next = function next() {
+		if (step === 1) {
+			if (typeof $scope.reportData.location == 'undefined') {
+				
+				alert('Select a location');
+			} else {
+				$step1.hide();
+				$step2.show();
+				step++;
+			}			
+			return;
+		} else if (step === 2) {
+			//console.log($scope.reportData);
+			if (validateForm()) {
+				console.log('all ok');
+			} else {
+				alert('Please fill in required fields.');
+			}
+			return;
+		}
+	
+	
+	
+	
+	
+	}
+	
+	function validateForm () {
+		var formData = $scope.reportData;
 		
-	
-	
-	
-	
-	
+		if (typeof formData.type === 'undefined'  ||  formData.type === '') {
+			return false;
+		} else if (typeof formData.date === 'undefined'  ||  formData.date === '') {
+			return false;
+		} else if (typeof formData.details === 'undefined'  ||  formData.details === '') {
+			return false;
+		}
+		return true;
+		
+		formData = null;
 	}
 	
 	function setLocationData (data) {
@@ -136,6 +169,7 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 		
 		//console.log(formattedData);
 		
+		$scope.reportData.location = formattedData;
 		
 		
 		formattedData = null;
