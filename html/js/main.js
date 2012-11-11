@@ -42,7 +42,8 @@ function frontpageCtrl ($scope, $element, $rootScope) {
 
 
 function makeReportCtrl ($scope, $element, $rootScope) {
-	
+	var map;
+	var marker;
 	
 	$rootScope.$on('make', function (event, data) {
 		geocoder = new google.maps.Geocoder();
@@ -54,6 +55,20 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 		};
 		map = new google.maps.Map(document.getElementById("map-pick"), mapOptions);
 		
+		
+		google.maps.event.addListener(map, 'click', function(event) {
+			//console.log(event);
+			if (typeof marker == 'undefined') {
+				marker = new google.maps.Marker({
+					position: event.latLng,
+					map: map
+				});
+			} else {
+				marker.setPosition(event.latLng);
+			}
+			
+			
+		});
 		
 	});
 
