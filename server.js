@@ -43,7 +43,7 @@ db.test.find({}, function(err, data) {
 /*************
 Socket.IO Setup
 *************/
-
+/*
 var io = require('socket.io').listen(8000, {'log level': 0});
 console.log('Socket.io listening on port 8000');
 
@@ -57,4 +57,4 @@ io.sockets.on('connection', function (socket) {
 	
 
 });
-
+*/
