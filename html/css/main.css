@@ -302,44 +302,73 @@ textarea {
 	/* ==========================================================================
 	End of Boilerplate
 	========================================================================== */
-
+	
+	body {
+		background: #300018;
+		color: #fff;
+	}
+	
 	h1, h2, h3 {
 		text-align: center;
 	}
-
-
-	.view {
-		
+	
+	button {
+		border:0;
+		font-weight: bold;
+		color: #fff;
 	}
 
+	.view {
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		background: #5A3D31;
+	}
+	
+	
 
 
 	#frontpage {
-
+		padding-top: 20px;
+		max-width: 300px;
+	}
+	
+	#frontpage  h1 {
+		text-align:center;
+		margin:0;
 	}
 
+	#frontpage  h2 {
+		text-align:center;
+		margin:0;
+	}
+	
+	#frontpage  p {
+		text-align:center;
+		margin:0;
+		margin-bottom: 30px;
+	}
+	
+	
 	#frontpage #navigate {
 		margin-left: auto;
 		margin-right: auto;
 		width: 300px;
 	}
-	#frontpage #navigate h1 {
-		text-align:center;
-	}
-
+		
 	#frontpage #navigate button{
-		padding-top: 5px;
-		padding-bottom: 5px;
-		padding-left: 5px;
-		padding-right: 5px;
+		width: 150px;
+		height: 60px;
 	}
 
 	#frontpage #navigate button#make{
 		float:left;
+		background: #837B47;
 	}
 
 	#frontpage #navigate button#view{
 		float:right;
+		background: #ADB85F;
 	}
 
 
@@ -352,26 +381,26 @@ textarea {
 	}
 
 	#make-report #breadcrumbs{
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 10px;
-		padding-top: 5px;
+		height:40px;
 	}
 
 	#make-report #breadcrumbs ul{
 		margin:0;
 		padding:0;
 		list-style: none;
+		
 	}
 	
 	#make-report #breadcrumbs li{
 		float:left;
 		margin-right: 5px;
+		padding-top: 8px;
 	}
 		
 	#make-report #breadcrumbs button{
 		float:right;
+		height: 40px;
+		background: #837B47;
 	}
 	
 	#make-report #breadcrumbs a{
@@ -395,9 +424,6 @@ textarea {
 	
 	#make-report #map-pick {
 		height: 400px;
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
 		margin-bottom: 10px;
 	}
 	
@@ -441,9 +467,6 @@ textarea {
 	}
 
 	#view-reports #timeline{
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
 		margin-bottom: 10px;
 		
 	}
@@ -472,9 +495,6 @@ textarea {
 	
 	#view-reports #map-display {
 		height: 400px;
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
 		margin-bottom: 10px;
 	}
 	
@@ -489,9 +509,6 @@ textarea {
 	
 	
 	#view-reports #report-display{
-		max-width: 700px;
-		margin-left: auto;
-		margin-right: auto;
 	}
 	
 	#view-reports #report-display .report-line{
