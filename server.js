@@ -2,7 +2,7 @@
 /***************
 Lactate Setup
 ***************/
-/*
+
 var lactate = require('lactate');
 var server = lactate.createServer({root:'html'});
 
@@ -13,10 +13,12 @@ server.listen(80, function() {
 var files = lactate.dir('html');
 server.addListener('request', function(req, res) {
   if (req.url === '/') {
-    files.serve('index.html', req, res);
+	files.serve('index.html', req, res);
+  } else if (req.url.indexOf('/socket.io') === 0) {
+	files.toMiddleware();
   }
 });
-*/
+
 
 /*************
 MongoDB Setup
@@ -67,8 +69,8 @@ db.reports.group(
 Socket.IO Setup
 *************/
 
-var io = require('socket.io').listen(9521);
-console.log('Socket.io listening on port 9521');
+var io = require('socket.io').listen(8080);
+console.log('Socket.io listening on port 8080');
 
 io.sockets.on('connection', function (socket) {
 	
@@ -154,4 +156,4 @@ function returnHZD(socket, data) {
 	
 }
 
-fetchHighZoomData({});
+//fetchHighZoomData({});
