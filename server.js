@@ -2,7 +2,7 @@
 /***************
 Lactate Setup
 ***************/
-
+/*
 var lactate = require('lactate');
 var server = lactate.createServer({root:'html'});
 
@@ -16,7 +16,7 @@ server.addListener('request', function(req, res) {
     files.serve('index.html', req, res);
   }
 });
-
+*/
 
 /*************
 MongoDB Setup
