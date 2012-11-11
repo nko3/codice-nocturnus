@@ -27,6 +27,11 @@ function mainCtrl ($scope, $element, $rootScope) {
 	//$viewReports.hide();
 
 	
+	$rootScope.$on('home', function (event, data) {
+		$frontpage.show();
+		$makeReport.hide();
+		$viewReports.hide();
+	});
 	
 	$rootScope.$on('make', function (event, data) {
 		$frontpage.hide();
@@ -111,7 +116,10 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 			//console.log($scope.reportData);
 			if (validateForm()) {
 				console.log('all ok');
+				//submit data
 				socket.emit('create-report', $scope.reportData);
+				//disable forms
+				$($element).find('input, select, textarea').attr('disabled', true);
 			} else {
 				alert('Please fill in required fields.');
 			}
@@ -123,6 +131,24 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 	
 	
 	}
+	
+	//One of these will fire after form submission
+	socket.on('save-success', function(data) {
+		//on success move to step 3
+		step++;
+		$scope.reportData._id = data;
+		$step2.hide();
+		$step3.show();
+	});
+	
+	socket.on('save-error', function(data) {
+		//on fail, alert then go home 
+		alert('Error: Could not save the data.');
+		$rootScope.$broadcast('home');
+	});
+	
+	
+	
 	
 	function validateForm () {
 		var formData = $scope.reportData;
@@ -147,6 +173,13 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 		var a = location.address_components;
 		var i = a.length;
 		var c;
+		
+		var latLng = marker.getPosition();
+		
+		formattedData.Ya = latLng.Ya;
+		formattedData.Za = latLng.Za;
+		
+		
 		for	(;i--;) {
 			c = a[i];
 			
