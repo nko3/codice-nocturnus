@@ -1,6 +1,21 @@
 var myApp = angular.module('myApp',[]);
 
+var defaultLocation = new google.maps.LatLng(40.7143528, -74.0059731);
 
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(setGeoLocation, showError);
+}
+
+
+function setGeoLocation(position) {
+	console.log(position);
+	defaultLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+}
+
+function showError(error) {
+	console.log('Could not get GeoLocation');
+	console.log(error);
+}
 
 function mainCtrl ($scope, $element, $rootScope) {
 	var jqElement = $($element);
@@ -49,7 +64,7 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 		geocoder = new google.maps.Geocoder();
 		//geocoder.geocode
 		var mapOptions = {
-		  center: new google.maps.LatLng(40.7143528, -74.0059731),
+		  center: defaultLocation,
 		  zoom: 8,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
@@ -153,7 +168,7 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		geocoder = new google.maps.Geocoder();
 		//geocoder.geocode
 		var mapOptions = {
-		  center: new google.maps.LatLng(40.7143528, -74.0059731),
+		  center: defaultLocation,
 		  zoom: 8,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
@@ -245,21 +260,7 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		heatmap.setMap(null);
 	}
 	
-	if (navigator.geolocation) {
-		console.log('getting location');
-		navigator.geolocation.getCurrentPosition(setGeoLocation, showError);
-    }
-
 	
-	function setGeoLocation(position) {
-		console.log('location found');
-		console.log(position);
-	}
-	
-	function showError(error) {
-		console.log('an error occured');
-		console.log(error);
-	}
 	
 	
 }
