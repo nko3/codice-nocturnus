@@ -42,6 +42,22 @@ function frontpageCtrl ($scope, $element, $rootScope) {
 
 
 function makeReportCtrl ($scope, $element, $rootScope) {
+	
+	
+	$rootScope.$on('make', function (event, data) {
+		geocoder = new google.maps.Geocoder();
+		//geocoder.geocode
+		var mapOptions = {
+		  center: new google.maps.LatLng(40.7143528, -74.0059731),
+		  zoom: 8,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map-pick"), mapOptions);
+		
+		
+	});
+
+
 
 }
 
@@ -126,8 +142,6 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		  zoom: 8,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
-		var $mapElement = $($element).find('#map-display');
-		console.log($mapElement);
 		map = new google.maps.Map(document.getElementById("map-display"), mapOptions);
 		
 		placeHeatmap();

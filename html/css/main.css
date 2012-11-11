@@ -359,6 +359,15 @@ textarea {
 
 	}
 	
+	#make-report #map-pick {
+		height: 400px;
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+	}
+	
+	
 	#make-report #step2 .form-line {
 		margin-bottom: 10px;
 		padding-bottom: 10px;
