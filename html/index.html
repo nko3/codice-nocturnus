@@ -104,25 +104,25 @@
 				Google map here
 			</section>
 			
-			<section id="report-display">
+			<section data-ng-show="currentReport.datetime" id="report-display">
 				<div class="report-line">
 					<h4>Event</h4>
-					<p>Hurricane Sandy</p>
+					<p>{{currentReport.event}}</p>
 				</div>
 				
 				<div class="report-line">
 					<h4>Damage Type</h4>
-					<p>Flood</p>
+					<p>{{currentReport.type}}</p>
 				</div>
 				
 				<div class="report-line">
 					<h4>Date Observed</h4>
-					<p>October 25, 2012</p>
+					<p>{{currentReport.datetime  | date:'MMM d, y h:mm a'}}</p>
 				</div>
 				
 				<div class="report-line">
 					<h4>Details</h4>
-					<p>Water rushed into people's homes</p>
+					<p>{{currentReport.details}}</p>
 				</div>
 				
 				<div class="report-line">

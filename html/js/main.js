@@ -49,7 +49,7 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 	var map;
 	var geocoder;
 	var markers = [];
-	
+	$scope.currentReport = {};
 	
 	
 	var highZoomData = [
@@ -66,16 +66,55 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 	});
 	
 	var lowZoomData = [
-		new google.maps.LatLng(40.7143528, -74.0059731),
-		new google.maps.LatLng(40.7243528, -74.0159731),
-		new google.maps.LatLng(40.7133528, -74.0259731),
-		new google.maps.LatLng(40.7123528, -74.0029731),
-		new google.maps.LatLng(40.7213528, -74.0049731),
-		new google.maps.LatLng(40.7233528, -74.0029731),
-		new google.maps.LatLng(40.7093528, -74.0129731),
-		new google.maps.LatLng(40.7083528, -74.0109731),
-		new google.maps.LatLng(40.7073528, -74.0189731),
-		new google.maps.LatLng(40.7223528, -74.0199731)
+		{location: new google.maps.LatLng(40.7143528, -74.0059731),
+		details: 'something goes here',
+		event: 'Sandy',
+		type: 'flood',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7243528, -74.0159731),
+		details: 'something else goes here',
+		event: 'Sandy',
+		type: 'fire',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7133528, -74.0259731),
+		details: 'blah blah',
+		event: 'Irene',
+		type: 'hail',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7123528, -74.0029731),
+		details: 'foo',
+		event: 'Sandy',
+		type: 'wind',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7213528, -74.0049731),
+		details: 'bar',
+		event: '',
+		type: 'flood',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7233528, -74.0029731),
+		details: 'things',
+		event: 'Sandy',
+		type: 'wind',
+		datetime: new Date()
+		
+		},
+		{location: new google.maps.LatLng(40.7093528, -74.0129731),
+		details: 'something',
+		event: '',
+		type: 'flood',
+		datetime: new Date()
+		
+		}
 	
 	];
 	
@@ -102,13 +141,13 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		if (typeof this.heatmap == 'undefined')
 			this.heatmap = true;
 		var z = map.getZoom();
-		console.log(z);
+		//console.log(z);
 		if (this.heatmap && z >=10) {
 			//if past zoom 10 and heatmap is still there
 			//remove the heatmap, place markers
+			this.heatmap = false;
 			placeMarkers();
 			removeHeatmap();
-			this.heatmap = false;
 		} else if (this.heatmap && z < 10) {
 			//if zoom is low and heatmap is already there
 			//do nothing
@@ -116,9 +155,9 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		} else if (!this.heatmap && z < 10) {
 			//if zoom is low and heatmap is not there
 			//place the heatmap, remove the markers
+			this.heatmap = true;
 			placeHeatmap();
 			removeMarkers();
-			this.heatmap = true;
 		}
 	}
 	
@@ -129,17 +168,34 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		var c;
 		var mr = markers;
 		var mp = map;
+		var holder;
 		for (;i--;) {
 			c = d[i];
 			//console.log(c);
-			mr.push(
-				new google.maps.Marker({
-					position: c,
-					map: mp,
-					title:"Hello World!"
-				})
+			
+			holder = new google.maps.Marker({
+						position: c.location,
+						map: mp
+					});
+			
+			google.maps.event.addListener(holder, 'click', (function() {
+				var clicked = c;
+				//console.log(clicked);
+				return function() {
+					setCurrentReport(clicked);
+				}
+			})()
 			);
+			 
+			
+			mr.push(holder);
 		}
+	}
+	
+	function setCurrentReport(data) {
+		$scope.currentReport = data;
+		//console.log(data);
+		$scope.$apply();
 	}
 	
 	function removeMarkers() {
@@ -148,6 +204,7 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		for (;i--;) {
 			mr[i].setMap(null);
 		}
+		mr.length = 0;
 	}
 	
 	
