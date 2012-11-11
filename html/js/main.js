@@ -227,11 +227,6 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 	
 	
 	var highZoomData = [
-		{location: new google.maps.LatLng(40.7143528, -74.0059731), weight: 1},
-		{location: new google.maps.LatLng(40.5143528, -73.0059731), weight: .2},
-		{location: new google.maps.LatLng(41.7143528, -75.0059731), weight: 1},
-		{location: new google.maps.LatLng(39.7143528, -74.1059731), weight: .5},
-		{location: new google.maps.LatLng(40.7143528, -74.1059731), weight: .4}
 	];
 	
 	var heatmap = new google.maps.visualization.HeatmapLayer({
@@ -293,6 +288,8 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 	];
 	
 	$rootScope.$on('view', function (event, data) {
+		socket.emit('get-hzd');
+	
 		var mapOptions = {
 		  center: defaultLocation,
 		  zoom: 8,
@@ -300,12 +297,47 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 		};
 		map = new google.maps.Map(document.getElementById("map-display"), mapOptions);
 		
-		placeHeatmap();
+		//placeHeatmap();
 		//placeMarkers();
 		
 		google.maps.event.addListener(map, 'zoom_changed', zoomHandler);
 		
 	});
+	
+	socket.on('high-zoom-data', function(data) {
+		highZoomData.length = 0;
+		var row;
+		for(var prop in data) {
+			
+			row = data[prop];
+			highZoomData.push({location: new google.maps.LatLng(row.Ya, row.Za), weight: row.count});
+		}
+		row = null;
+		console.log(highZoomData);
+		placeHeatmap();
+	});
+	
+	socket.on('low-zoom-data', function(data) {
+		lowZoomData.length = 0;
+		console.log(data);
+		var i = data.length;
+		var c;
+		for (;i--;) {
+			c = data[i];
+			lowZoomData.push({
+				location: new google.maps.LatLng(c.location.Ya, c.location.Za),
+				details: c.details,
+				event: c.event,
+				type: c.type,
+				datetime: new Date(Date.parse(c.date))
+				
+			});
+		}
+		
+		removeMarkers();
+		placeMarkers();
+	})
+	
 	
 	function zoomHandler() {
 		if (typeof this.heatmap == 'undefined')
@@ -317,6 +349,7 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 			//remove the heatmap, place markers
 			this.heatmap = false;
 			placeMarkers();
+			socket.emit('get-lzd');
 			removeHeatmap();
 		} else if (this.heatmap && z < 10) {
 			//if zoom is low and heatmap is already there

@@ -69,8 +69,27 @@ db.reports.group(
 Socket.IO Setup
 *************/
 
-var io = require('socket.io').listen(443);
-console.log('Socket.io listening on port 443');
+var io = require('socket.io').listen(8080, {
+	
+});
+console.log('Socket.io listening to port 8080');
+
+io.enable('browser client minification');  // send minified client
+io.enable('browser client etag');          // apply etag caching logic based on version number
+io.enable('browser client gzip');          // gzip the file
+io.set('log level', 1);                    // reduce logging
+io.set('transports', [                     // enable all transports (optional if you want flashsocket)
+    'websocket'
+  , 'flashsocket'
+  , 'htmlfile'
+  , 'xhr-polling'
+  , 'jsonp-polling'
+]);
+
+
+
+
+
 
 io.sockets.on('connection', function (socket) {
 	
@@ -81,6 +100,17 @@ io.sockets.on('connection', function (socket) {
 	
 	
 	
+	
+	socket.on('get-hzd', function (data) {
+		//console.log(data);
+		fetchHighZoomData(socket, data);
+	});
+	
+	
+	socket.on('get-lzd', function (data) {
+		//console.log(data);
+		fetchLowZoomData(socket, data);
+	});
 
 });
 
@@ -145,15 +175,62 @@ function fetchHighZoomData(socket) {
 
 
 function returnHZD(socket, data) {
-	console.log(data);
+	//console.log(data);
 	var i = data.length;
 	var c;
-	var formatted = [];
+	var formatted = {};
+	var name;
 	for(;i--;) {
 		c = data[i];
-			
+		name = c.location.locality + ',' + c.location.areaLevel1  + ',' +  c.location.country;
+		if (typeof formatted[name] == 'undefined') {
+			formatted[name] = {Ya: c.location.Ya, Za: c.location.Za, count: 1};
+		} else	{
+			formatted[name].count++;
+		}
+		
+		
 	}
 	
+	socket.emit('high-zoom-data', formatted);
+	//console.log(formatted);
+	
 }
+
+function fetchLowZoomData(socket) {
+	db.reports.find({}, (
+	function(socket) {
+		return function(err, data) {
+			if( err || !data ) {
+				console.log("Query error");
+			} else {
+				console.log("Query success");
+				returnLZD(socket, data);
+			}
+		}
+	}
+	)(socket));
+	
+}
+
+
+function returnLZD(socket, data) {
+	//console.log(data);
+	var i = data.length;
+	var c;
+	var formatted = {};
+	var name;
+	for(;i--;) {
+		c = data[i];
+		
+		
+		
+	}
+	
+	socket.emit('low-zoom-data', data);
+	//console.log(formatted);
+	
+}
+
 
 //fetchHighZoomData({});
