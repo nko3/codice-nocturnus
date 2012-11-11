@@ -49,12 +49,12 @@ console.log('Socket.io listening on port 8000');
 
 io.sockets.on('connection', function (socket) {
 	
-	socket.on('create-report', function(data) {
+	socket.on('create-report', function (data) {
 		console.log(data);
 	});
 	
 	
 	
 
-}
+});
 
