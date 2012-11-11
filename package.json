@@ -1,6 +1,6 @@
 {
   "name": "nko3-codice-nocturnus",
-  "version": "0.3.0-1",
+  "version": "0.5.0",
   "description": "Codice Nocturnus",
   "main": "server.js",
   "scripts": {
