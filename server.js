@@ -25,7 +25,7 @@ MongoDB Setup
 var databaseUrl = "nodejitsu_nko3-codice-nocturnus:dil63rtig7l3j79f1b9s5hn0eh@ds039257.mongolab.com:39257/nodejitsu_nko3-codice-nocturnus_nodejitsudb2284569002";
 var collections = ["test", "reports"]
 var db = require("mongojs").connect(databaseUrl, collections);
-
+/*
 db.test.save({email: "speed85@gmail.com", password: "hello", sex: "male"}, function(err, saved) {
 	if( err || !saved ) console.log("Entry not saved");
 	else console.log("Entry saved");
@@ -38,7 +38,7 @@ db.test.find({}, function(err, data) {
 	}
 });
 
-
+*/
 
 /*************
 Socket.IO Setup

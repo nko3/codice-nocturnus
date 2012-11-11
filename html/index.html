@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=700">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -37,9 +37,9 @@
 		<div data-ng-controller="makeReportCtrl" class="view" id="make-report" style="display:none;">
 			<nav id="breadcrumbs">
 				<ul class="crumbs">
-					<li class="current"><a data-ng-click="">Set Location <span>></span></a></li>
-					<li><a data-ng-click="">Report Damage <span>></span></a></li>
-					<li><a data-ng-click="">Upload Media</a></li>
+					<li class="current"><a data-ng-click="">Location <span>></span></a></li>
+					<li><a data-ng-click="">Details <span>></span></a></li>
+					<li><a data-ng-click="">Media</a></li>
 					
 				</ul>
 				<button data-ng-click="next()">Next</button>
@@ -169,8 +169,8 @@
 		
 		<script src="/js/socket.io.js"></script>
 		<script>
-			//var socket = io.connect('http://localhost:8000');
-			var socket = io.connect('http://codice-nocturnus.nko3.jitsu.com:8000');
+			var socket = io.connect('http://localhost:8000');
+			//var socket = io.connect('http://codice-nocturnus.nko3.jitsu.com:8000');
 			
 		</script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBEMEluXR1UXATUEsTbOiSrtnrtOe6M3I&sensor=true&libraries=visualization"></script>

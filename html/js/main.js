@@ -111,6 +111,7 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 			//console.log($scope.reportData);
 			if (validateForm()) {
 				console.log('all ok');
+				socket.emit('create-report', $scope.reportData);
 			} else {
 				alert('Please fill in required fields.');
 			}
@@ -160,7 +161,7 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 					formattedData.areaLevel1 = c.long_name;
 				break;
 				case 'country' : 
-					formattedData.country = c.long_name;
+					formattedData.country = c.short_name;
 				break;
 			
 			}
