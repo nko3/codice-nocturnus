@@ -302,7 +302,10 @@ textarea {
 	/* ==========================================================================
 	End of Boilerplate
 	========================================================================== */
-	
+	/*************
+	Palette
+	http://www.colourlovers.com/palette/728391/Dig_My_Olive_Branch
+	*************/
 	body {
 		background: #300018;
 		color: #fff;
@@ -310,7 +313,13 @@ textarea {
 	
 	h1, h2, h3 {
 		text-align: center;
+		color: #E5EDB8;
 	}
+	
+	h4 {
+		color: #E5EDB8;
+	}
+	
 	
 	button {
 		border:0;
@@ -393,10 +402,11 @@ textarea {
 	
 	#make-report #breadcrumbs li{
 		float:left;
-		margin-right: 5px;
+		margin-left: 5px;
 		padding-top: 8px;
 	}
-		
+	
+	
 	#make-report #breadcrumbs button{
 		float:right;
 		height: 40px;
@@ -472,7 +482,10 @@ textarea {
 	}
 	
 	#view-reports #timeline div{
-		width:150px;
+		width:130px;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-weight: bold;
 	}
 	
 	#view-reports #timeline input{
@@ -485,6 +498,7 @@ textarea {
 	
 	#view-reports #timeline #end-date{
 		float: right;
+		text-align: right;
 	}
 	
 	
@@ -522,7 +536,7 @@ textarea {
 	}
 	
 	#view-reports #report-display h4{
-		color: #777;
+		padding-left: 5px;
 		margin: 0;
 	}
 	
