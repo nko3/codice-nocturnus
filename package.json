@@ -1,6 +1,6 @@
 {
   "name": "nko3-codice-nocturnus",
-  "version": "0.0.0-4",
+  "version": "0.0.0-5",
   "description": "Codice Nocturnus",
   "main": "server.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "socket.io": "0.9.11",
-	"lactate": "0.12.2"
+    "lactate": "0.12.2"
   },
   "engines": {
     "node": "0.8.x"
