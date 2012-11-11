@@ -69,8 +69,8 @@ db.reports.group(
 Socket.IO Setup
 *************/
 
-var io = require('socket.io').listen(8080);
-console.log('Socket.io listening on port 8080');
+var io = require('socket.io').listen(443);
+console.log('Socket.io listening on port 443');
 
 io.sockets.on('connection', function (socket) {
 	
