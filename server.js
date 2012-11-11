@@ -67,8 +67,8 @@ db.reports.group(
 Socket.IO Setup
 *************/
 
-var io = require('socket.io').listen(8000, {'log level': 0});
-console.log('Socket.io listening on port 8000');
+var io = require('socket.io').listen(9521);
+console.log('Socket.io listening on port 9521');
 
 io.sockets.on('connection', function (socket) {
 	
