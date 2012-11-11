@@ -8,7 +8,7 @@ if (navigator.geolocation) {
 
 
 function setGeoLocation(position) {
-	console.log(position);
+	//console.log(position);
 	defaultLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 }
 

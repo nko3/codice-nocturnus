@@ -352,9 +352,43 @@ textarea {
 	}
 
 	#make-report #breadcrumbs{
-
+		max-width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+		padding-top: 5px;
 	}
 
+	#make-report #breadcrumbs ul{
+		margin:0;
+		padding:0;
+		list-style: none;
+	}
+	
+	#make-report #breadcrumbs li{
+		float:left;
+		margin-right: 5px;
+	}
+		
+	#make-report #breadcrumbs button{
+		float:right;
+	}
+	
+	#make-report #breadcrumbs a{
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	#make-report #breadcrumbs li.current{
+		font-weight: bold;
+	}
+	
+	#make-report #breadcrumbs a span{
+		font-weight: normal;
+		color: #ccc;
+	}
+	
+	
 	#make-report #steps{
 
 	}

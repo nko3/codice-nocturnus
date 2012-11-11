@@ -33,17 +33,22 @@
 		
 		
 		<div data-ng-controller="makeReportCtrl" class="view" id="make-report" style="display:none;">
-			<section id="breadcrumbs">
-			
-			</section>
+			<nav id="breadcrumbs">
+				<ul class="crumbs">
+					<li class="current"><a data-ng-click="">Set Location <span>></span></a></li>
+					<li><a data-ng-click="">Report Damage <span>></span></a></li>
+					<li><a data-ng-click="">Upload Media</a></li>
+					
+				</ul>
+				<button>Next</button>
+				<div class="clearfix"></div>
+			</nav>
 			<div id="steps">
 				<section class="step" id="step1">
-					<h2>Set Location</h2>
 					<div id="map-pick"></div>
 				</section>
 				
-				<section class="step" id="step2">
-					<h2>Report Damage</h2>
+				<section class="step" id="step2" style="display:none;">
 					<form id="damage-report">
 						<div class="form-line">
 							<label>Select event (if applicable)</label>
@@ -78,10 +83,11 @@
 					</form>
 				</section>
 				
-				<section class="step" id="step3">
-					<h2>Upload Media</h2>
+				<section class="step" id="step3" style="display:none;">
 				</section>
 			
+				<section class="step" id="result" style="display:none;">
+				</section>
 			
 			</div>		
 		</div>
