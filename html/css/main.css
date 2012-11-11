@@ -339,7 +339,6 @@ textarea {
 
 	#frontpage {
 		padding-top: 20px;
-		max-width: 300px;
 	}
 	
 	#frontpage  h1 {
@@ -362,11 +361,10 @@ textarea {
 	#frontpage #navigate {
 		margin-left: auto;
 		margin-right: auto;
-		width: 300px;
 	}
 		
 	#frontpage #navigate button{
-		width: 150px;
+		width: 350px;
 		height: 60px;
 	}
 
@@ -501,7 +499,14 @@ textarea {
 		text-align: right;
 	}
 	
-	
+	#view-reports #timeline h3{
+		width: 300px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 0;
+		margin-bottom:0;
+		padding-top: 13px;
+	}
 	
 	
 	

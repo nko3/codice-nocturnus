@@ -16,14 +16,17 @@ server.addListener('request', function(req, res) {
 	files.serve('index.html', req, res);
   } else if (req.url.indexOf('/socket.io') === 0) {
 	files.toMiddleware();
-  } else if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
-		// parse a file upload
-		var form = new formidable.IncomingForm();
-		form.parse(req, function(err, fields, files) {
-		  res.writeHead(200, {'content-type': 'text/plain'});
-		  res.write('received upload:\n\n');
-		  res.end(sys.inspect({fields: fields, files: files}));
-		});
-		return;
+  } else if (req.url == '/upload') {
+	// parse a file upload
+	console.log('file upload');
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files) {
+	  res.writeHead(200, {'content-type': 'text/plain'});
+	  res.write('received upload:\n\n');
+	  res.end();
+	});
+	
+	files.toMiddleware();
+	return;
   }
 });

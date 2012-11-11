@@ -115,11 +115,11 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 		} else if (step === 2) {
 			//console.log($scope.reportData);
 			if (validateForm()) {
-				console.log('all ok');
+				//console.log('all ok');
 				//submit data
 				socket.emit('create-report', $scope.reportData);
 				//disable forms
-				$($element).find('input, select, textarea').attr('disabled', true);
+				$($element).find('#step2').find('input, select, textarea').attr('disabled', true);
 			} else {
 				alert('Please fill in required fields.');
 			}
@@ -313,13 +313,13 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 			highZoomData.push({location: new google.maps.LatLng(row.Ya, row.Za), weight: row.count});
 		}
 		row = null;
-		console.log(highZoomData);
+		//console.log(highZoomData);
 		placeHeatmap();
 	});
 	
 	socket.on('low-zoom-data', function(data) {
 		lowZoomData.length = 0;
-		console.log(data);
+		//console.log(data);
 		var i = data.length;
 		var c;
 		for (;i--;) {
