@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp',[]);
 
+var geocoder = new google.maps.Geocoder();
 var defaultLocation = new google.maps.LatLng(40.7143528, -74.0059731);
 
 if (navigator.geolocation) {
@@ -59,10 +60,15 @@ function frontpageCtrl ($scope, $element, $rootScope) {
 function makeReportCtrl ($scope, $element, $rootScope) {
 	var map;
 	var marker;
+	var step = 1;
+	$scope.reportData = {};
+	
+	var $step1 = $($element).find('#step1');
+	var $step2 = $($element).find('#step2');
+	var $step3 = $($element).find('#step3');
+	var $result = $($element).find('#result');
 	
 	$rootScope.$on('make', function (event, data) {
-		geocoder = new google.maps.Geocoder();
-		//geocoder.geocode
 		var mapOptions = {
 		  center: defaultLocation,
 		  zoom: 8,
@@ -80,20 +86,74 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 				});
 			} else {
 				marker.setPosition(event.latLng);
+				
 			}
-			
+			geocoder.geocode({'latLng': event.latLng}, setLocationData);
 			
 		});
 		
 	});
-
+	
+	
+	
+	$scope.next = function next() {
+		
+	
+	
+	
+	
+	
+	}
+	
+	function setLocationData (data) {
+		if(!data.length) return;
+		var location = data[0];
+		//console.log(location);
+		var formattedData = {};
+		var a = location.address_components;
+		var i = a.length;
+		var c;
+		for	(;i--;) {
+			c = a[i];
+			
+			switch (c.types[0]) {
+				case 'locality' : 
+					formattedData.locality = c.long_name;
+				break;
+				case 'administrative_area_level_2' :
+					if (!formattedData.areaLevel1) formattedData.areaLevel1 = c.long_name;
+				break;
+				case 'administrative_area_level_1' : 
+					formattedData.areaLevel1 = c.long_name;
+				break;
+				case 'country' : 
+					formattedData.country = c.long_name;
+				break;
+			
+			}
+			
+		}
+		
+		//console.log(formattedData);
+		
+		
+		
+		formattedData = null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 }
 
 function viewReportsCtrl ($scope, $element, $rootScope) {
 	var map;
-	var geocoder;
 	var markers = [];
 	$scope.currentReport = {};
 	
@@ -165,8 +225,6 @@ function viewReportsCtrl ($scope, $element, $rootScope) {
 	];
 	
 	$rootScope.$on('view', function (event, data) {
-		geocoder = new google.maps.Geocoder();
-		//geocoder.geocode
 		var mapOptions = {
 		  center: defaultLocation,
 		  zoom: 8,
