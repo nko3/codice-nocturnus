@@ -135,10 +135,21 @@ function makeReportCtrl ($scope, $element, $rootScope) {
 	//One of these will fire after form submission
 	socket.on('save-success', function(data) {
 		//on success move to step 3
+		/*
 		step++;
 		$scope.reportData._id = data;
 		$step2.hide();
 		$step3.show();
+		*/
+		//No Step 3 yet...
+		alert('Saved. Sorry, image upload not working...');
+		$rootScope.$broadcast('home');
+		
+		$step1.show();
+		$step2.hide();
+		marker.setMap();
+		marker = null;
+		$scope.reportData = {};
 	});
 	
 	socket.on('save-error', function(data) {
